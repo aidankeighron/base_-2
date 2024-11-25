@@ -4,16 +4,17 @@ def dec_to_base_n2(n):
     if n == 0:
         return "0"
  
-    base = "01"
+    base = ""
     while n != 0:
         rem = n % -2
-        n = int(n/-2)
+        n = n // -2
 
-        if (rem < 0):
+        if rem < 0:
             rem += 2
             n += 1
 
-        base = str(rem) + base
+        base = ("1" if rem != 0 else "0") + base
+
     return base
 
 def dec_to_base_n2_min(n):
@@ -38,6 +39,5 @@ print(base_n2, base_n2 == '11101')
 print(base_n2_to_dec('1010'), base_n2_to_dec('1010') == -10, base_n2_to_dec('1010') == base_n2_to_dec_min('1010'))
 print(base_n2_to_dec(base_n2), base_n2_to_dec(base_n2) == 13, base_n2_to_dec(base_n2) == base_n2_to_dec_min(base_n2))
 
-for i in range(13, 100, 2):
-    print(i)
-    print(base_n2_to_dec(dec_to_base_n2(i)) == i)
+for i in range(1, 100):
+    print(i, base_n2_to_dec(dec_to_base_n2(i)) == i, dec_to_base_n2(i))
